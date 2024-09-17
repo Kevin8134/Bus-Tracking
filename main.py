@@ -88,7 +88,7 @@ class BusNotifier:
                     self.stop_event.set()  
                     return
                 elif arrive_time < 0:
-                    print(self.bus_id + error_dict.get(arrive_time, 'Unknown error'))
+                    print("Bus " + self.bus_id + ' ' + error_dict.get(arrive_time, 'Unknown error'))
                     if arrive_time in (-2, -3):
                         self.notify_distance -= 1
                         if self.notify_distance < 0:
@@ -97,7 +97,7 @@ class BusNotifier:
                         self.stop_event.set()                        
                     return
                 else:
-                    print("Please Wait")
+                    print(f"Please Wait... Bus {self.bus_id} is still far away")
                     return
 
     async def notify_user(self) -> None:
@@ -133,6 +133,9 @@ async def main():
         {'bus_id': '615', 'target_stop': '新莊高中', 'direction': '0', 'notify_distance': 3, 'time_threshold': 150},
         {'bus_id': '508區', 'target_stop': '永明派出所', 'direction': '1', 'notify_distance': 4, 'time_threshold': 120},
         {'bus_id': '重慶幹線', 'target_stop': '捷運芝山站(戲曲中心)', 'direction': '1', 'notify_distance': 2, 'time_threshold': 130},
+        {'bus_id': '藍7', 'target_stop': '美麗華', 'direction': '1', 'notify_distance': 3, 'time_threshold': 130},
+        {'bus_id': '承德幹線', 'target_stop': '捷運松江南京站', 'direction': '1', 'notify_distance': 5, 'time_threshold': 120},
+        {'bus_id': '226', 'target_stop': '捷運大安站(復興)', 'direction': '1', 'notify_distance': 5, 'time_threshold': 120}
     ]
 
     # 模擬多個用戶同時操作
